@@ -2,12 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
 
 @layer components {
   .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+    @apply py-1 px-2 rounded text-white;
   }
 }
 
-*/
+.card {
+  @apply border p-4 w-full flex flex-col gap-4 rounded
+}
+
+.content {
+  @apply flex flex-col gap-4 w-full
+}
+
+.alert-danger {
+  @apply bg-red-100 p-6 mb-0 rounded
+}
+
+.alert-success {
+  @apply bg-emerald-100 p-4 my-4 rounded text-emerald-800
+}
+
+.alert-deleted {
+  @apply bg-red-100 p-4 my-4 rounded text-red-800
+}
+
+
