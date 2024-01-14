@@ -1,10 +1,13 @@
 class QuestionsController < ApplicationController
+  before_action :set_question!, only: %i[show edit destroy update]
+
   def index
-    @questions = Question.all
+    @questions = Question.all.order created_at: :desc
   end
 
   def show
-    @question = Question.find(params[:id])
+    @answer = @question.answers.build
+    @answers = @question.answers.order created_at: :desc
   end
 
   def new
@@ -24,8 +27,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question = Question.find(params[:id])
-
     if @question.update question_params
       flash[:success] = 'Question updated!'
 
@@ -37,11 +38,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
     flash[:deleted] = 'Question deleted!'
 
@@ -52,6 +51,10 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :body)
+  end
+
+  def set_question!
+    @question = Question.find(params[:id])
   end
 end
 

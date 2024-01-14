@@ -1,0 +1,7 @@
+.field_with_errors, label {
+    width: 33.333333%; /* Equivalent to w-4/12 in Tailwind CSS */
+}
+
+.field_with_errors, textarea {
+    width: 100%; /* Equivalent to w-full in Tailwind CSS */
+}

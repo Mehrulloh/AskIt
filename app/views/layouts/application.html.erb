@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>AskIt</title>
+    <title><%= full_title(yield(:page_title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,14 +13,7 @@
   </head>
 
   <body>
-    <header class="py-6 bg-gray-900 text-white flex items-center">
-      <nav class="container mx-auto">
-        <ul class="flex gap-4">
-          <li><%= link_to "Home", root_url, class: "" %></li>
-          <li><%= link_to "Questions", questions_path, class: "" %></li>
-        </ul>
-      </nav>
-    </header>
+    <%= yield :main_menu %>
     <main class="container mx-auto mt-4">
       <%= render 'shared/flash' %>
       <%= yield %>
