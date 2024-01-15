@@ -1,4 +1,5 @@
 <div class="content">
+  <%= currently_at "Questions" %>
   <%= provide :page_title, "Show question" %>
   <div class="content">
     <h1 class="text-2xl"><%= @question.title %></h1>
@@ -31,23 +32,10 @@
     <hr class="my-2">
     <h1 class="mb-4 font-bold text-2xl">Answers</h1>
 
-    <% @answers.each do |answer| %>
-      <div class="flex justify-between items-start mb-4">
+    <div  class="my-2">
+      <%= pagination @pagy %>
+    </div>
 
-        <div class="text-xl">
-          <p class="mb-2"><%= answer.body  %></p>
-
-          <p>
-            <time datetime="<%= answer.formatted_created_at %>">
-              <%= answer.formatted_created_at %>
-            </time>
-          </p>
-        </div>
-        <div>
-          <%= link_to "Edit", edit_question_answer_path(@question, answer), class: "btn-primary bg-gray-500" %>
-          <%= link_to "Delete", question_answer_path(@question, answer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-primary bg-red-500" %>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: 'answers/answer', collection: @answers, as: :answer, locals: {question: @question } %>
   </div>
 </div>

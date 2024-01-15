@@ -1,0 +1,25 @@
+<div class="auth">
+  <div class="page-title mb-4">
+    <%= provide :page_title, "Log In" %>
+    <% currently_at "Log In" %>
+    <h1 class="text-3xl">Log In</h1>
+  </div>
+
+  <div>
+    <%= form_with url: session_path do |form| %>
+      <div class="flex flex-col gap-2 mb-4">
+        <%= form.label :email, class: "w-96" %>
+        <%= form.email_field :email, placeholder: "Enter your email", class: "w-96" %>
+
+        <%= form.label :password, class: "w-96" %>
+        <%= form.password_field :password, placeholder: "Enter your password", class: "w-96" %>
+      </div>
+
+      <div>
+        <%= form.submit "Login", class: "btn-primary bg-blue-600" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

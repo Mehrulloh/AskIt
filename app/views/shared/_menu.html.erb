@@ -1,9 +1,21 @@
-<%= provide :main_menu  do %>
-  <header class="py-6 bg-gray-900 text-white flex items-center">
-    <nav class="container mx-auto">
+<%= provide :main_menu do %>
+  <header class="py-6 bg-gray-900 text-white">
+    <nav class="container mx-auto flex items-center justify-between">
+
       <ul class="flex gap-4">
-        <li><%= link_to "Home", root_url, class: "text-gray-500" %></li>
-        <li><%= link_to "Questions", questions_path, class: "" %></li>
+        <li><%= nav_tab "Home", root_url, class: "", current_page: current_page %></li>
+        <li><%= nav_tab "Questions", questions_path, class: "", current_page: current_page %></li>
+      </ul>
+
+      <ul class="navbar_user flex gap-4">
+        <% if user_signed_in? %>
+          <li><%= link_to "#{current_user.name_or_email}", root_path %></li>
+          <li><%= link_to "Log out", session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          </li>
+        <% else %>
+          <li><%= nav_tab "Sign Up", new_user_path, class: "", current_page: current_page %></li>
+          <li><%= nav_tab "Log In", new_session_path, class: "", current_page: current_page %></li>
+        <% end %>
       </ul>
     </nav>
   </header>
