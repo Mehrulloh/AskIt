@@ -16,7 +16,6 @@ require 'pagy/extras/navs'
 # Pagy::DEFAULT[:items]  = 20                                 # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
 
-
 # Other Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#other-variables
 # Pagy::DEFAULT[:size]         = [1,4,4,1]                    # default
@@ -29,10 +28,8 @@ require 'pagy/extras/navs'
 # Pagy::DEFAULT[:cycle]        = true                         # example
 # Pagy::DEFAULT[:request_path] = "/foo"                       # example
 
-
 # Extras
 # See https://ddnexus.github.io/pagy/categories/extra
-
 
 # Backend Extras
 
@@ -121,7 +118,6 @@ require 'pagy/extras/navs'
 # uncomment if you are going to use Searchkick.pagy_search
 # Searchkick.extend Pagy::Searchkick
 
-
 # Frontend Extras
 
 # Bootstrap extra: Add nav, nav_js and combo_nav_js helpers and templates for Bootstrap pagination
@@ -157,7 +153,6 @@ require 'pagy/extras/navs'
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/docs/extras/navs#steps
 # Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
-
 
 # Feature Extras
 
@@ -202,7 +197,6 @@ require 'pagy/extras/navs'
 # set to false only if you want to make :jsonapi an opt-in variable
 # Pagy::DEFAULT[:jsonapi] = false  # default true
 
-
 # Rails
 # Enable the .js file required by the helpers that use javascript
 # (pagy*_nav_js, pagy*_combo_nav_js, and pagy_items_selector_js)
@@ -241,7 +235,6 @@ require 'pagy/extras/navs'
 #                   filepath: 'path/to/pagy-xyz.yml',
 #                   pluralize: lambda{ |count| ... } )
 
-
 # I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
 # than the default pagy internal i18n (see above)
 # See https://ddnexus.github.io/pagy/docs/extras/i18n
@@ -249,7 +242,6 @@ require 'pagy/extras/navs'
 
 # Default i18n key
 # Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'   # default
-
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally
 Pagy::DEFAULT.freeze

@@ -37,11 +37,9 @@ class QuestionsController < ApplicationController
     else
       render :edit
     end
-
   end
 
-  def edit
-  end
+  def edit; end
 
   def destroy
     @question.destroy
@@ -60,7 +58,3 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 end
-
-
-
-

@@ -13,6 +13,12 @@
 
         <%= form.label :password, class: "w-96" %>
         <%= form.password_field :password, placeholder: "Enter your password", class: "w-96" %>
+
+      </div>
+
+      <div class="mb-4">
+        <%= form.check_box :remember_me, value: '1',  class: "rounded" %>
+        <%= form.label :remember_me, class: "" %>
       </div>
 
       <div>
