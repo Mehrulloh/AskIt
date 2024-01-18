@@ -1,0 +1,26 @@
+<%= currently_at "Admin users" %>
+<%= provide :page_title, "Users" %>
+
+<h1 class="text-3xl">Users</h1>
+
+<%= pagination @pagy %>
+
+<div class="mt-4">
+  <%= link_to "Download zip", admin_users_path(format: :zip), class: "btn-primary bg-gray-400" %>
+</div>
+
+
+<table class="bg-gray-200 mt-4">
+  <thead>
+    <tr class="">
+      <th scope="col" class="table-header">#</th>
+      <th scope="col" class="table-header">Name</th>
+      <th scope="col" class="table-header">Email</th>
+      <th scope="col" class="table-header">Created at</th>
+      <th scope="col" class="table-header">Updated at</th>
+    </tr>
+  </thead>
+  <tbody class="table-auto">
+  <%= render @users %>
+  </tbody>
+</table>

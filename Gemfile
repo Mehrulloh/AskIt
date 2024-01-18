@@ -44,6 +44,14 @@ gem 'draper'
 
 gem 'valid_email2'
 
+gem 'rubyzip'
+
+gem 'caxlsx'
+
+gem 'caxlsx_rails'
+
+
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
