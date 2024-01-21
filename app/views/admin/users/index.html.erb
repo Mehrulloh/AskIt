@@ -1,0 +1,47 @@
+<%= currently_at "Admin users" %>
+<%= provide :page_title, "Users" %>
+
+<h1 class="text-3xl">Users</h1>
+
+<%= pagination @pagy %>
+
+<div class="mt-4">
+  <%= link_to "Download zip", admin_users_path(format: :zip), class: "btn-primary bg-gray-200 text-black hover:bg-gray-300" %>
+</div>
+
+<table class="bg-gray-200 mt-4">
+  <thead>
+    <tr class="">
+      <th scope="col" class="table-header">#</th>
+      <th scope="col" class="table-header">Name</th>
+      <th scope="col" class="table-header">Email</th>
+      <th scope="col" class="table-header">Created at</th>
+      <th scope="col" class="table-header">Updated at</th>
+    </tr>
+  </thead>
+  <tbody class="table-auto">
+  <%= render @users %>
+  </tbody>
+</table>
+
+
+<h1 class="text-3xl mt-4">Update users</h1>
+
+
+<%= form_with url: admin_users_path, data: {turbo: false } do |form| %>
+  <div class="flex flex-col gap-4 w-full">
+
+    <div class="flex flex-col gap-2 mt-2">
+      <%= form.label :archive, 'Select archive', class: 'w-96' %>
+      <%= form.file_field :archive, class: 'w-96' %>
+    </div>
+
+    <div class="mt-2">
+      <%= form.submit "Upload", class: "btn-primary bg-blue-600" %>
+      <%= link_to "Back", :back, class: "" %>
+    </div>
+
+  </div>
+<% end %>
+
+

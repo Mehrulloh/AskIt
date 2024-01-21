@@ -33,6 +33,10 @@
   @apply border p-2 text-blue-500
 }
 
+.table-header {
+  @apply px-2 py-2
+}
+
 /*  Style for pagination */
 
 .pagy-nav.pagination {
