@@ -1,0 +1,29 @@
+ru:
+  en: Английский
+  ru: Русский
+  activerecord:
+    attributes:
+      question:
+        title: Заголовок
+        body: Текст
+  pages:
+    index:
+      title: Добро пожаловать в
+  menu:
+    home: Главная
+    questions: Вопросы
+    logOut: Выход
+    logIn: Вход
+    signIn: Регистрация
+
+
+  questions:
+    index: Вопросы
+    destroy:
+      deleted: Вопрос удалён
+    create:
+      success: Вопрос создан
+    update:
+      success: Вопрос обновлён
+
+
