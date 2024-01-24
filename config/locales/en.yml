@@ -24,3 +24,10 @@ en:
       success: "Question created"
     update:
       success: "Question updated"
+
+
+  comments:
+    create:
+      success: Comment created!
+    destroy:
+      deleted: Comment deleted

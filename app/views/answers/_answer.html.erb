@@ -1,8 +1,12 @@
 <%= tag.div class: "flex justify-between items-start mb-4 border-2 rounded p-4", id: dom_id(answer) do %>
   <div class="text-xl">
+    <h2 class="font-bold text-xl flex gap-2 items-center">
+      <%= question.user.gravatar %>
+      <%= question.user.name_or_email %>
+    </h2>
     <p class="mb-4"><%=  strip_tags(answer.body)  %></p>
     <p>
-      <time datetime="<%= answer.formatted_created_at %>">
+      <time datetime="<%= answer %>">
         <%= answer.formatted_created_at %>
       </time>
     </p>
@@ -12,3 +16,5 @@
     <%= link_to "Delete", question_answer_path(question, answer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-primary bg-red-500" %>
   </div>
 <% end %>
+
+<%= render 'comments/commentable', commentable: @question, comment: @comment, html_id: dom_id(answer, 'comment_form') %>

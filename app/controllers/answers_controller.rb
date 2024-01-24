@@ -1,18 +1,18 @@
 class AnswersController < ApplicationController
+  include QuestionsAnswers
   include ActionView::RecordIdentifier
 
   before_action :set_question!
   before_action :set_answer!, except: :create
 
   def create
-    @answer = @question.answers.build(answer_params)
+    @answer = @question.answers.build(answer_params.merge(user: current_user))
 
     if @answer.save
       flash[:success] = 'Answer created!'
       redirect_to question_path(@question)
     else
-      @answers = @question.answers.order created_at: :desc
-      render 'questions/show'
+      load_questions_answers do_render: true
     end
   end
 

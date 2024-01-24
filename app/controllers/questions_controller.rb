@@ -1,16 +1,14 @@
 class QuestionsController < ApplicationController
+  include QuestionsAnswers
   before_action :set_question!, only: %i[show edit destroy update]
 
   def index
-    @pagy, @questions = pagy Question.order(created_at: :desc)
+    @pagy, @questions = pagy Question.includes([:user]).order(created_at: :desc)
     @questions = @questions.decorate
   end
 
   def show
-    @question = @question.decorate
-    @answer = @question.answers.build
-    @pagy, @answers = pagy Answer.where(question: @question).order(created_at: :desc)
-    @answers = @answers.decorate
+    load_questions_answers
   end
 
   def new
@@ -18,7 +16,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new question_params
+    @question = current_user.questions.build question_params
 
     if @question.save
       flash[:success] = t ".success"

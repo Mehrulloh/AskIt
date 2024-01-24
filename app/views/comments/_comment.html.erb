@@ -1,0 +1,13 @@
+<%= tag.div class: "flex justify-between items-start mb-4 border-2 rounded p-4", id: dom_id(comment) do %>
+  <div class="text-xl">
+    <h2 class="font-bold text-xl flex gap-2 items-center">
+      <%= comment.user.gravatar %>
+      <%= comment.user.name_or_email %>
+    </h2>
+    <p class="mb-4"><%=  strip_tags(comment.body)  %></p>
+  </div>
+  <div>
+    <%#= link_to "Edit", edit_question_answer_path(question, answer), class: "btn-primary bg-gray-500" %>
+    <%= link_to "Delete", polymorphic_path([comment.commentable, comment]), data: { turbo_method: :delete }, class: "btn-primary bg-red-500" %>
+  </div>
+<% end %>

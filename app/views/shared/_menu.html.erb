@@ -7,14 +7,21 @@
         <li><%= nav_tab t("menu.questions"), questions_path, class: "", current_page: current_page %></li>
       </ul>
 
-      <ul class="navbar_user flex gap-4">
+      <ul class="navbar_user flex gap-4 items-center">
           <% I18n.available_locales.each do |locale| %>
           <li>
-            <%#= tag.div "", class: "#{ I18n.locale }" %>
             <%= link_to t(locale), root_path( locale: locale )  %>
           </li>
           <% end %>
+
         <% if user_signed_in? %>
+          <li>
+            <%= link_to "#", class: "flex items-center gap-2" do %>
+              <%= current_user.gravatar %>
+              <%= current_user.name_or_email %>
+            <% end %>
+          </li>
+
           <li><%= link_to "#{current_user.name_or_email}", edit_user_path(current_user) %></li>
           <li><%= link_to t("menu.logOut"), session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
           </li>

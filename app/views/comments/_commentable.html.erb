@@ -1,0 +1,26 @@
+<% is_current_comment = comment&.for?(commentable) %>
+
+<%= link_to 'Show comments', "##{html_id}", class: "" %>
+
+<%= tag.div class: "my-4", id: html_id do %>
+  <%= form_with model: [commentable, (is_current_comment ? comment :  commentable.comments.build)] do |form| %>
+    <% if is_current_comment %>
+      <%=  render "shared/errors", object: comment %>
+      <% end %>
+
+    <div class="flex flex-col gap-4 w-full">
+
+      <div class="flex flex-col gap-2">
+        <%= form.label :body, class: 'w-96' %>
+        <%= form.text_area :body, placeholder: "Title", class: 'w-96' %>
+      </div>
+
+      <div class="mt-2">
+        <%= form.submit "Submit", class: "btn-primary bg-blue-600" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="content mt-4">
+    <%= render commentable.comments.decorate %>
+  </div>
+<% end %>
