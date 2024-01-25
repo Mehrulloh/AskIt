@@ -10,7 +10,7 @@
       <ul class="navbar_user flex gap-4 items-center">
           <% I18n.available_locales.each do |locale| %>
           <li>
-            <%= link_to t(locale), root_path( locale: locale )  %>
+            <%= link_to t(locale), url_for(params.to_unsafe_h.merge( locale: locale) )  %>
           </li>
           <% end %>
 
