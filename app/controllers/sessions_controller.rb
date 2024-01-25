@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     if @user&.authenticate(params[:password])
-      do_sign_in @ser
+      do_sign_in @user
       flash[:success] = "Welcome back, #{current_user.name_or_email}!"
       redirect_to root_path
     else
@@ -31,6 +31,6 @@ class SessionsController < ApplicationController
 
   def do_sign_in(user)
     sign_in(user)
-    remember(user) if params[:remember_me] = '1'
+    remember(user) if params[:remember_me] == '1'
   end
 end
