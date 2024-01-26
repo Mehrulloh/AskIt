@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
 
   before_action :set_commentable!
   before_action :set_question
+  before_action :authorize_comment!
+  after_action :verify_authorized
+
+
   def create
     @comment = @commentable.comments.build comment_params
 
@@ -38,4 +42,9 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body).merge(user: current_user)
   end
+
+  def authorize_comment!
+    authorize(@comment || Comment)
+  end
+
 end

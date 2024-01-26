@@ -5,6 +5,9 @@
       <ul class="flex gap-4">
         <li><%= nav_tab t("menu.home"), root_url, class: "", current_page: current_page %></li>
         <li><%= nav_tab t("menu.questions"), questions_path, class: "", current_page: current_page %></li>
+        <% if policy([:admin, :user]).index? %>
+          <li><%= nav_tab "Dashboard", admin_users_path, class: "", current_page: current_page %></li>
+        <% end %>
       </ul>
 
       <ul class="navbar_user flex gap-4 items-center">
@@ -18,7 +21,7 @@
           <li>
             <%= link_to edit_user_path(current_user), class: "flex items-center gap-2" do %>
               <%= current_user.gravatar %>
-              <%= current_user.name_or_email %>
+              <%= current_user.id %>
             <% end %>
           </li>
 

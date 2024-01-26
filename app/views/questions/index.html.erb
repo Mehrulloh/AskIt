@@ -4,7 +4,9 @@
 <div class="content">
   <div class="flex justify-between items-center">
     <h1 class="text-3xl">Questions</h1>
-    <%= link_to "New question", new_question_path, class: "btn-primary bg-gray-500" %>
+    <% if policy(:question).new? %>
+      <%= link_to "New question", new_question_path, class: "btn-primary bg-gray-500" %>
+    <% end %>
   </div>
 
   <div  class="my-2">

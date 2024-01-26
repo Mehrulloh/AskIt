@@ -1,6 +1,6 @@
-<%=  render "shared/errors", object: @user %>
+<%=  render "shared/errors", object: user %>
 
-<%= form_with model: @user, data: {turbo: false } do |form| %>
+<%= form_with model: [:admin, user] do |form| %>
   <div class="flex flex-col gap-4 w-full">
 
     <div class="flex flex-col gap-2">
@@ -10,11 +10,11 @@
       <%= form.label :lastname, class: 'w-96' %>
       <%= form.text_field :lastname, placeholder: "Enter your lastname", class: 'w-96' %>
 
-      <%= form.label :role, class: 'w-96' %>
-      <%= form.text_field :role, readonly: true,  class: 'w-96' %>
-
       <%= form.label :email, class: "w-96" %>
       <%= form.text_field :email, placeholder: "Enter your email", class: "w-96" %>
+
+      <%= form.label :role, class: "w-96" %>
+      <%= form.select :role, user_roles, {}, class: "w-96" %>
 
       <%= form.label :password, class: "w-96" %>
       <%= form.password_field :password, placeholder: "Enter your password", class: "w-96" %>
@@ -24,13 +24,13 @@
 
     </div>
 
-    <% unless @user.new_record? %>
+    <% unless user.new_record? %>
       <%= form.label :old_password, class: "w-96" %>
       <%= form.password_field :old_password, placeholder: "Confirm your password", class: "w-96" %>
     <% end %>
 
     <div>
-      <%= form.submit (@user.new_record? ? "Register" : "Save"),  class: "btn-primary bg-blue-600" %>
+      <%= form.submit (user.new_record? ? "Register" : "Save"),  class: "btn-primary bg-blue-600" %>
     </div>
 
   </div>

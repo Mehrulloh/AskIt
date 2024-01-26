@@ -1,9 +1,11 @@
 <% is_current_comment = comment&.for?(commentable) %>
+<% comment_bilder = is_current_comment ? comment : commentable.comments.build %>
 
 <%= link_to 'Show comments', "##{html_id}", class: "" %>
 
 <%= tag.div class: "my-4", id: html_id do %>
-  <%= form_with model: [commentable, (is_current_comment ? comment :  commentable.comments.build)] do |form| %>
+  <% if policy(comment_bilder).create? %>
+  <%= form_with model: [commentable, comment_bilder] do |form| %>
     <% if is_current_comment %>
       <%=  render "shared/errors", object: comment %>
       <% end %>
@@ -21,6 +23,7 @@
     </div>
   <% end %>
   <div class="content mt-4">
-    <%= render commentable.comments.decorate %>
+    <%= render commentable.comments.includes(:user).decorate %>
   </div>
+  <% end %>
 <% end %>

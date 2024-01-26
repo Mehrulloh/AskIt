@@ -2,6 +2,12 @@
   <th scope="row" class="table-header"><%= user.id %></th>
   <td class="table-header" ><%= user.name %></td>
   <td class="table-header" ><%= user.email %></td>
+  <td class="table-header" ><%= user.role %></td>
   <td class="table-header" ><%= user.created_at %></td>
-  <td class="table-header" ><%= user.updated_at %></td>
+  <td class="table-header" >
+    <%= link_to "Edit", edit_admin_user_path(user), class: "btn-primary bg-gray-500" %>
+    <%= link_to "Delete", admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-primary bg-red-500" %>
+  </td>
+
+
 </tr>

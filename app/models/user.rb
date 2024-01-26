@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  attr_accessor :old_password, :remember_token
+  enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
+
+  attr_accessor :old_password, :remember_token, :admin_edit
 
   has_secure_password validations: false
 
@@ -11,11 +13,18 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 
   validate :password_presence
-  validate :correct_old_password, on: :update, if: -> { password.present? }
+  validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit }
   validates :password, presence: true, confirmation: true, allow_blank: true,
                        length: { minimum: 8, maximum: 70 }
 
   validate :password_complexity
+
+  def guest?
+    false
+  end
+  def author?(obj)
+    obj.user == self
+  end
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
