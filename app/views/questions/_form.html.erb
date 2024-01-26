@@ -11,6 +11,11 @@
     </div>
 
     <div class="mt-2">
+      <%= form.label :tags, class: 'w-96' %>
+      <%= form.collection_select :tag_ids, tags, :id, :title, {}, multiple: true, class: " text-black" %>
+    </div>
+
+    <div class="mt-2">
       <%= form.submit "Submit question", class: "btn-primary bg-blue-600" %>
       <%= link_to "Back", :back, class: "" %>
     </div>

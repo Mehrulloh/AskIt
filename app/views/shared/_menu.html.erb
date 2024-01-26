@@ -10,20 +10,20 @@
       <ul class="navbar_user flex gap-4 items-center">
           <% I18n.available_locales.each do |locale| %>
           <li>
-            <%= link_to t(locale), url_for(params.to_unsafe_h.merge( locale: locale) )  %>
+            <%= link_to t(locale), url_for(params.to_unsafe_h.merge(locale: locale))  %>
           </li>
           <% end %>
 
         <% if user_signed_in? %>
           <li>
-            <%= link_to "#", class: "flex items-center gap-2" do %>
+            <%= link_to edit_user_path(current_user), class: "flex items-center gap-2" do %>
               <%= current_user.gravatar %>
               <%= current_user.name_or_email %>
             <% end %>
           </li>
 
-          <li><%= link_to "#{current_user.name_or_email}", edit_user_path(current_user) %></li>
-          <li><%= link_to t("menu.logOut"), session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <li>
+            <%= link_to t("menu.logOut"), session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
           </li>
         <% else %>
           <li><%= nav_tab t("menu.signIn"), new_user_path, class: "", current_page: current_page %></li>
@@ -33,3 +33,4 @@
     </nav>
   </header>
 <% end %>
+
