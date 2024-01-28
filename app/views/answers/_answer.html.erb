@@ -12,8 +12,12 @@
     </p>
   </div>
   <div>
-    <%= link_to "Edit", edit_question_answer_path(question, answer), class: "btn-primary bg-gray-500" %>
-    <%= link_to "Delete", question_answer_path(question, answer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-primary bg-red-500" %>
+    <% if policy(answer).edit? %>
+      <%= link_to "Edit", edit_question_answer_path(question, answer), class: "btn-primary bg-gray-500" %>
+    <% end %>
+    <% if policy(answer).destroy? %>
+      <%= link_to "Delete", question_answer_path(question, answer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-primary bg-red-500" %>
+    <% end %>
   </div>
 <% end %>
 

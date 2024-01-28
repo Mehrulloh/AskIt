@@ -1,0 +1,10 @@
+<%= provide :page_title, "Admin Dashboard" %>
+<% currently_at "Admin Dashboard" %>
+
+<div class="content">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl">Admin Dashboard</h1>
+  </div>
+
+    <%= render 'form', user: @user %>
+</div>

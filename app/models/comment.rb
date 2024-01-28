@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  include Authorship
+
   belongs_to :commentable, polymorphic: true
   belongs_to :user
 

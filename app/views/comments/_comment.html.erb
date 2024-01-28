@@ -7,7 +7,8 @@
     <p class="mb-4"><%=  strip_tags(comment.body)  %></p>
   </div>
   <div>
-    <%#= link_to "Edit", edit_question_answer_path(question, answer), class: "btn-primary bg-gray-500" %>
-    <%= link_to "Delete", polymorphic_path([comment.commentable, comment]), data: { turbo_method: :delete }, class: "btn-primary bg-red-500" %>
+    <% if policy(comment).destroy? %>
+      <%= link_to "Delete", polymorphic_path([comment.commentable, comment]), data: { turbo_method: :delete }, class: "btn-primary bg-red-500" %>
+    <% end %>
   </div>
 <% end %>
