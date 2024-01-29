@@ -1,0 +1,19 @@
+<%=  render "shared/errors", object: @user %>
+<% currently_at "New password" %>
+<%= provide :page_title, "New password" %>
+
+<%= form_with url: password_reset_path do |form| %>
+  <div class="flex flex-col gap-4 w-full">
+
+    <div class="flex flex-col gap-2">
+      <%= form.label :email, class: "w-96" %>
+      <%= form.email_field :email, value: params[:email], placeholder: "Enter your email", class: "w-96", required:true  %>
+    </div>
+
+    <div>
+      <%= form.submit "Submit", class: "btn-primary bg-blue-600" %>
+      <%= link_to 'Back', new_session_path, class: "" %>
+    </div>
+
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<%=  render "shared/errors", object: @user %>
+
+<%= currently_at "Reset password" %>
+<%= provide :page_title, "Reset password" %>
+
+<%= form_with model: @user, url: password_reset_path, method: :patch do |form| %>
+  <div class="flex flex-col gap-4 w-full">
+
+    <div class="flex flex-col gap-2">
+      <%= form.hidden_field :password_reset_token, value: @user.password_reset_token, class: "w-96" %>
+      <%= form.hidden_field :email, value: @user.email, class: "w-96" %>
+
+      <%= form.label :password, class: "w-96" %>
+      <%= form.password_field :password, placeholder: "Enter your password", class: "w-96" %>
+
+      <%= form.label :password_confirmation, for: "user[password_confirmation]", class: "w-96" %>
+      <%= form.password_field :password_confirmation, placeholder: "Confirm your password", class: "w-96" %>
+    </div>
+
+    <div>
+      <%= form.submit (@user.new_record? ? "Register" : "Save"),  class: "btn-primary bg-blue-600" %>
+    </div>
+
+  </div>
+<% end %>

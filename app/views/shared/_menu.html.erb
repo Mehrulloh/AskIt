@@ -21,7 +21,7 @@
           <li>
             <%= link_to edit_user_path(current_user), class: "flex items-center gap-2" do %>
               <%= current_user.gravatar %>
-              <%= current_user.id %>
+              <%= current_user.name_or_email %>
             <% end %>
           </li>
 

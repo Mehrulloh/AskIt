@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.2'
+gem 'rails', '~> 7.1.3'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+gem 'propshaft'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
@@ -60,6 +60,7 @@ gem 'rails-i18n'
 
 gem 'pundit'
 
+gem 'sidekiq'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
@@ -80,6 +81,8 @@ group :development, :test do
   gem 'rubocop-rails', '~> 2.23.1', require: false
   gem 'pry-rails'
   gem 'bullet'
+
+  gem 'letter_opener'
 end
 
 group :development do
@@ -88,7 +91,6 @@ group :development do
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
-
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end

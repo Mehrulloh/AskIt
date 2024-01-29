@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Recoverable
+
   enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
 
   attr_accessor :old_password, :remember_token, :admin_edit
