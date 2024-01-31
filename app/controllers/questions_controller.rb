@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids])
+    @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids]),
+                             link_extra: "data-turbo-frame=pagination"
     @questions = @questions.decorate
   end
 
@@ -24,21 +25,19 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build question_params
 
     if @question.save
-      flash[:success] = t ".success"
-
-      redirect_to questions_path
+      set_respond_to questions_path, (t ".success"),
+                     query_decorate: true
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @question.update question_params
-      flash[:success] = t ".success"
-
-      redirect_to questions_path
+      set_respond_to questions_path, (t ".success"),
+                                    query_decorate:true
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -46,9 +45,8 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    flash[:deleted] = t ".deleted"
-
-    redirect_to questions_path
+    set_respond_to [questions_path, status: :see_other],
+                   (t ".deleted")
   end
 
   private

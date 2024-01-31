@@ -2,7 +2,6 @@ class Answer < ApplicationRecord
   include Authorship
   include Commentable
 
-
   belongs_to :question
   belongs_to :user
 

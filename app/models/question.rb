@@ -2,7 +2,6 @@ class Question < ApplicationRecord
   include Authorship
   include Commentable
 
-
   has_many :answers, dependent: :destroy
   belongs_to :user
   has_many :question_tags, dependent: :destroy
@@ -19,6 +18,7 @@ class Question < ApplicationRecord
     else
       questions = questions.includes(:question_tags, :tags)
     end
+
     questions.order(created_at: :desc)
   end
 end

@@ -1,7 +1,7 @@
 <% is_current_comment = comment&.for?(commentable) %>
 <% comment_bilder = is_current_comment ? comment : commentable.comments.build %>
 
-<%= link_to 'Show comments', "##{html_id}", class: "" %>
+<%= link_to 'Show comments', "#{html_id}", class: "" %>
 
 <%= tag.div class: "my-4", id: html_id do %>
   <% if policy(comment_bilder).create? %>

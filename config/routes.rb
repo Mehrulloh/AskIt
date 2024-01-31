@@ -23,11 +23,12 @@ Rails.application.routes.draw do
 
     resources :users, only: %i[new create edit update]
 
-    resources :answers, except: %i[new show], concerns: :commentable
 
-    resources :questions, concern: :commentable do
+    resources :questions, concerns: :commentable do
       resources :answers, except: %i[new show]
     end
+
+    resources :answers, except: %i[new show], concerns: :commentable
 
     namespace :admin do
       resources :users, only: %i[index create edit update destroy]

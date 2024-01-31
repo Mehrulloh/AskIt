@@ -9,10 +9,10 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.build(answer_params.merge(user: current_user))
-
     if @answer.save
-      flash[:success] = 'Answer created!'
-      redirect_to question_path(@question)
+      set_respond_to question_path(@question),
+                     'Answer created!',
+                     query_decorate: true
     else
       load_questions_answers do_render: true
     end
@@ -20,17 +20,16 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    flash[:deleted] = 'Answer deleted!'
-    redirect_to question_path(@question)
+    set_respond_to [ question_path(@question), status: :see_other ], 'Answer deleted!'
   end
 
   def edit; end
 
   def update
     if @answer.update answer_params
-      flash[:success] = 'Answer updated!'
-
-      redirect_to question_path(@question, anchor: dom_id(@answer))
+      set_respond_to question_path(@question, anchor: dom_id(@answer)),
+                     'Answer updated',
+                     query_decorate: true
     else
       render :edit
     end

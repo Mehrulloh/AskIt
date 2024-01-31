@@ -6,8 +6,20 @@ class ApplicationController < ActionController::Base
 
   around_action :switch_locale
 
-  private
+  def set_respond_to(query= {}, flash_msg = '', query_decorate: false)
+    respond_to do |format|
+      format.html do
+        flash[:success] = flash_msg
+        redirect_to query
+      end
+      format.turbo_stream do
+        query = query.decorate if query_decorate
+        flash.now[:success] = flash_msg
+      end
+    end
+  end
 
+  private
   def locale_from_headers
     header = request.env["HTTP_ACCEPT_LANGUAGE"]
 

@@ -1,25 +1,25 @@
-<%=  render "shared/errors", object: @question %>
+<%= turbo_frame_tag @question do %>
+  <%= form_with model: @question, data: {turbo: false } do |form| %>
+    <%=  render "shared/errors", object: @question %>
+    <div class="flex flex-col gap-4 w-full">
 
-<%= form_with model: @question, data: {turbo: false } do |form| %>
-  <div class="flex flex-col gap-4 w-full">
+      <div class="flex flex-col gap-2">
+        <%= form.label :title, class: 'w-96' %>
+        <%= form.text_field :title, placeholder: "Title", class: 'w-96' %>
+        <%= form.label :body, class: "w-96" %>
+        <%= form.text_area :body, placeholder: "Body", class: "w-96" %>
+      </div>
 
-    <div class="flex flex-col gap-2">
-      <%= form.label :title, class: 'w-96' %>
-      <%= form.text_field :title, placeholder: "Title", class: 'w-96' %>
-      <%= form.label :body, class: "w-96" %>
-      <%= form.text_area :body, placeholder: "Body", class: "w-96" %>
+
+      <div class="mt-2 flex flex-col">
+        <%= form.label :tags, class: 'w-96' %>
+        <%= form.collection_select :tag_ids, tags, :id, :title, {}, multiple: true, class: " text-black w-96" %>
+      </div>
+
+      <div class="mt-2">
+        <%= form.submit "Submit question", class: "btn-primary bg-blue-600" %>
+        <%= link_to "Back", :back, class: "" %>
+      </div>
     </div>
-
-
-    <div class="mt-2">
-      <%= form.label :tags, class: 'w-96' %>
-      <%= form.collection_select :tag_ids, tags, :id, :title, {}, multiple: true, class: " text-black" %>
-    </div>
-
-    <div class="mt-2">
-      <%= form.submit "Submit question", class: "btn-primary bg-blue-600" %>
-      <%= link_to "Back", :back, class: "" %>
-    </div>
-
-  </div>
+  <% end %>
 <% end %>

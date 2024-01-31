@@ -1,40 +1,10 @@
 <div class="content">
   <%= currently_at "Questions" %>
   <%= provide :page_title, "Show question" %>
-  <div class="content">
-    <h1 class="text-2xl"><%= @question.title %></h1>
 
-    <p>
-      <time datetime="<%= @question.formatted_created_at %>">
-        <%= @question.formatted_created_at %>
-      </time>
-    </p>
+  <%= render @question %>
 
-    <p><%= sanitize @question.body %></p>
-
-    <div class="mb-4">
-      <h2 class="font-bold text-xl flex gap-2 items-center">
-      <%= @question.user.gravatar %>
-        <%= @question.user.name_or_email %>
-      </h2>
-
-      <hr class="my-2 content">
-    </div>
-
-    <%#= render 'comments/commentable', commentable: @question, comment: @comment, html_id: 'questionComments' %>
-
-    <div class="flex gap-1">
-      <% if policy(@question).edit? %>
-        <%= link_to "Edit", edit_question_path(@question), class: "btn-primary bg-gray-500" %>
-      <% end %>
-
-      <% if policy(@question).destroy? %>
-        <%= link_to "Delete", question_path(@question), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn-primary bg-red-500" %>
-      <% end %>
-
-    </div>
-
-  </div>
+  <%= render 'comments/commentable', commentable: @question, comment: @comment, html_id: 'questionComments' %>
 
   <div>
     <hr class="my-2 content">
@@ -45,14 +15,14 @@
     <%= render "answers/form" %>
   </div>
 
-  <div class="answers">
-    <hr class="my-2">
-    <h1 class="mb-4 font-bold text-2xl">Answers</h1>
-
-    <div  class="my-2">
-      <%= pagination @pagy %>
+  <%= turbo_frame_tag 'answers' do %>
+    <div class="answers">
+      <hr class="my-2">
+      <h1 class="mb-4 font-bold text-2xl">Answers</h1>
+        <div  class="my-2">
+          <%= pagination @pagy %>
+        </div>
+        <%= render partial: 'answers/answer', collection: @answers, as: :answer, locals: {question: @question } %>
     </div>
-
-    <%= render partial: 'answers/answer', collection: @answers, as: :answer, locals: {question: @question } %>
-  </div>
+  <% end %>
 </div>

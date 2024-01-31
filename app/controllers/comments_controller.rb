@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     comment = @commentable.comments.find params[:id]
     comment.destroy
     flash[:deleted] = t('.deleted')
-    redirect_to question_path(@question)
+    redirect_to question_path(@question), status: 303
   end
 
   private
@@ -37,6 +37,7 @@ class CommentsController < ApplicationController
     raise ActiveRecord::RecordNotFound if klass.blank?
 
     @commentable = klass.find(params["#{klass.name.underscore}_id"])
+
   end
 
   def comment_params

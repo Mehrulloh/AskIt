@@ -2,16 +2,26 @@
 <% currently_at t("questions.index") %>
 
 <div class="content">
-  <div class="flex justify-between items-center">
-    <h1 class="text-3xl">Questions</h1>
+  <h1 class="text-3xl">Questions</h1>
+  <div class="flex justify-start items-start flex-col">
     <% if policy(:question).new? %>
-      <%= link_to "New question", new_question_path, class: "btn-primary bg-gray-500" %>
+      <%= link_to "New question", new_question_path, class: "btn-primary bg-gray-500", data: { turbo_frame: dom_id(Question.new) } %>
+
+      <div class="my-2">
+        <%= turbo_frame_tag Question.new %>
+      </div>
+
     <% end %>
   </div>
 
-  <div  class="my-2">
-    <%== pagy_nav @pagy %>
-  </div>
+  <%= turbo_frame_tag 'pagination_pagy' do %>
+    <div>
+      <%== pagy_nav @pagy %>
+    </div>
 
-  <%= render @questions %>
+    <%= turbo_frame_tag 'questions' do  %>
+      <%= render @questions %>
+    <% end %>
+  <% end %>
+
 </div>
